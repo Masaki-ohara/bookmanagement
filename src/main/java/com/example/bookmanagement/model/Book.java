@@ -12,8 +12,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "books")
 public class Book {
-    @Id // 主キーであることを指定
-    // IDの生成戦略を指定（データベース依存の自動インクリメント）
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -27,6 +26,9 @@ public class Book {
     private String isbn;
 
     private LocalDate publishedDate;
+
+    // デフォルトコンストラクタ
+    public Book() {}
 
     public Book(Long id, String title, String author, String isbn, LocalDate publishedDate) {
         this.id = id;
@@ -49,7 +51,7 @@ public class Book {
         return title;
     }
 
-    public void String(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
