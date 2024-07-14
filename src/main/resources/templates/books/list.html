@@ -24,6 +24,9 @@
                 <td th:text="${book.author}">著者</td>
                 <td th:text="${book.isbn}">ISBN</td>
                 <td th:text="${book.publishedDate}">出版年月日</td>
+                <td>
+                    <a th:href="@{/books/edit/{id}(id=${book.id})}">編集</a>
+                </td>
             </tr>
             <a th:href="@{books/new}">書籍登録</a>
         </tbody>

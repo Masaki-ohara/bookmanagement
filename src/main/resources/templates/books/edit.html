@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>書籍の更新</title>
+</head>
+<body>
+    <h1>書籍の更新</h1>
+    <form th:action="@{/books/edit}" th:object="${book}" th:method="post">
+        <input type="hidden" th:field="*{id}">
+        <p>タイトル: <input type="text" th:field="*{title}"></p>
+        <p>著者: <input type="text" th:field="*{author}"></p>
+        <p>ISBN: <input type="text" th:field="*{isbn}"></p>
+        <p>出版年月日: <input type="date" th:field="*{publishedDate}"></p>
+        <p><button type="submit">登録</button></p>
+    </form>
+</body>
+</html>
