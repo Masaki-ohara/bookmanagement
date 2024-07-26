@@ -29,4 +29,23 @@ public class BookService {
     public Book updateBook(Book updatedBook) {
         return bookRepository.save(updatedBook);
     }
+
+    public void deleteBookById(Long id) {
+        // 引数として受け取ったIDを使って、データベースから該当する本の情報を取得します。
+        Optional<Book> optionalBook = bookRepository.findById(id);
+    
+        // 取得したOptionalオブジェクトが空でない（つまり、該当する本が見つかった）場合の処理です。
+        if (optionalBook.isPresent()) {
+            // Optionalから本のインスタンスを取り出します。
+            Book book = optionalBook.get();
+    
+            // 本の削除フラグをtrueに設定します。
+            // 修正: `isDeleted` メソッドが Boolean 型になっているため、Boolean 型のメソッドを使用します。
+            book.setDeleted(true);
+    
+            // 更新された本の情報をデータベースに保存します。
+            // ここで本の削除フラグがデータベースに反映されます。
+            bookRepository.save(book);
+        }
+    }    
 }
