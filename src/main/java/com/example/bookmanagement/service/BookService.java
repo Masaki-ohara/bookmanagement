@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
 public class BookService {
 
@@ -47,5 +48,9 @@ public class BookService {
             // ここで本の削除フラグがデータベースに反映されます。
             bookRepository.save(book);
         }
-    }    
+    }
+
+    public List<Book> findByAuthor(String author) {
+        return bookRepository.findByAuthor(author);
+    }
 }

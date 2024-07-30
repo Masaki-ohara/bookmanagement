@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -55,7 +56,6 @@ public class BookController {
         // これに基づいて対応するHTMLがレンダリングされる
         return "books/edit";
     }
-    
 
     @PostMapping("/edit")
     public String editBook(Book book) {
@@ -67,5 +67,14 @@ public class BookController {
     public String deleteBook(@PathVariable("id") Long id) {
         bookService.deleteBookById(id);
         return "redirect:/books";
+    }
+
+    @GetMapping("/search")
+    public String search(
+        @RequestParam(name = "author", required = false) String author,
+        Model model) {
+        List<Book> books = bookService.findByAuthor(author);
+        model.addAttribute("books", books);
+        return "books/search";
     }
 }
