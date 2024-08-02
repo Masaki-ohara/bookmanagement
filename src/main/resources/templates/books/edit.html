@@ -12,6 +12,15 @@
         <p>著者: <input type="text" th:field="*{author}"></p>
         <p>ISBN: <input type="text" th:field="*{isbn}"></p>
         <p>出版年月日: <input type="date" th:field="*{publishedDate}"></p>
+        <p>ジャンル
+            <select id="genre" th:field="*{genre.id}">
+                <option value="">ジャンルを選択</option>
+                <option th:each="genre : ${genres}"
+                        th:value="${genre.id}"
+                        th:text="${genre.name}"
+                        th:selected="${genre.id == book.genre.id}">ジャンル名</option>
+            </select>
+        </p>
         <p><button type="submit">登録</button></p>
     </form>
 </body>

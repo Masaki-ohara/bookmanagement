@@ -18,6 +18,7 @@
             <tr>
                 <th>ID</th>
                 <th>タイトル</th>
+                <th>ジャンル</th>
                 <th>著者</th>
                 <th>ISBN</th>
                 <th>出版年月日</th>
@@ -28,6 +29,7 @@
             <tr th:each="book : ${books}">
                 <td th:text="${book.id}">ID</td>
                 <td th:text="${book.title}">タイトル</td>
+                <td th:text="${book.genre.name}">ジャンル</td>
                 <td th:text="${book.author}">著者</td>
                 <td th:text="${book.isbn}">ISBn</td>
                 <td th:text="${book.publishedDate}">出版年月日</td>
