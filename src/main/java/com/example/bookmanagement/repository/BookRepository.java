@@ -1,6 +1,5 @@
 package com.example.bookmanagement.repository;
 
-
 import java.util.List; 
 import com.example.bookmanagement.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
