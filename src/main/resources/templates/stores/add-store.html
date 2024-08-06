@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>書店を追加</title>
+</head>
+<body>
+    <h1>書店の新規追加</h1>
+    <form th:action="@{/stores/add}" th:object="${store}" th:method="post">
+        <p>書店名: <input type="text" th:field="*{name}"></p>
+        <p>書籍</p>
+        <div th:each="book : ${books}">
+            <input type="checkbox" th:field="*{books}" th:value="${book.id}">
+            <span th:text="${book.title}"></span>
+        </div>
+        <p><button type="submit">登録</button></p>
+    </form>
+</body>
+</html>

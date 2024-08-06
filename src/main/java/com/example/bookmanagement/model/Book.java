@@ -131,6 +131,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDate;
 
+import java.util.Set;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+
 @Entity
 @SQLRestriction("is_deleted = false")
 @Table(name = "books")
@@ -158,6 +163,10 @@ public class Book {
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
+    // mappedByのbooksはテーブルではなくsoreのプロパティ名books
+    @ManyToMany(mappedBy = "books")
+    private Set<Store> stores;
+
     public Book() {
     }
 
@@ -170,6 +179,10 @@ public class Book {
         this.publishedDate = publishedDate;
         this.isDeleted = isDeleted;
         this.genre = genre;
+    }
+    // IDのみでインスタンス化出来るコンストラクタ
+    public Book(Long id){
+        this.id = id;
     }
 
     public Long getId() {
@@ -226,5 +239,13 @@ public class Book {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public Set<Store> getStores() {
+        return stores;
+    }
+
+    public void setStores(Set<Store> stores) {
+        this.stores = stores;
     }
 }
